@@ -15,10 +15,12 @@ jobs:
   create_wheels_manylinux_aarch64:
     runs-on: ubuntu-latest
     name: Create wheels for manylinux2014
-    container: quay.io/pypa/manylinux2014_aarch64
     steps:
       - uses: actions/checkout@v1
 
+      - name: Set up QEMU
+        #if: matrix.platform == 'manylinux2014_aarch64'
+        uses: docker/setup-qemu-action@v1
       - name: Build and audit wheels
         working-directory: ./bindings/python
         run: docker run --rm -v .:/work:rw --workdir=/work quay.io/pypa/manylinux2014_aarch64 bash -exc build-wheels.sh
