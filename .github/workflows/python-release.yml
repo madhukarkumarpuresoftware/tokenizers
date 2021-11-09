@@ -27,5 +27,5 @@ jobs:
         # /home/runner/work/tokenizers/tokenizers/bindings/python
       - name: Build and audit wheels
         working-directory: ./bindings/python
-        run: docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws/bindings/python quay.io/pypa/manylinux2014_aarch64 bash -exc build-wheels.sh
+        run: docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws/bindings/python quay.io/pypa/manylinux2014_aarch64 bash -exc 'sh build-wheels.sh'
         
